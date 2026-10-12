@@ -16,7 +16,7 @@ class PoultryApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
       ),
-      home: WelcomeScreen(),
+      home: const WelcomeScreen(),
     );
   }
 }
@@ -32,7 +32,7 @@ class WelcomeScreen extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green[700]!, Colors.green[900]!],
+            colors: [Colors.green.shade700, Colors.green.shade900],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -42,7 +42,7 @@ class WelcomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 radius: 60,
                 backgroundImage: NetworkImage(
                   'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=300&q=80',
@@ -73,7 +73,7 @@ class WelcomeScreen extends StatelessWidget {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
-                    foregroundColor: Colors.green[900],
+                    foregroundColor: Colors.green.shade900,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -82,7 +82,7 @@ class WelcomeScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => MainContentScreen()),
+                      MaterialPageRoute(builder: (context) => const MainContentScreen()),
                     );
                   },
                   child: const Text(
@@ -100,12 +100,11 @@ class WelcomeScreen extends StatelessWidget {
 }
 
 // 2. 100+ ትምህርቶችን የያዘው ዋናው ገጽ
-class MainContentScreen StatelessWidget {
+class MainContentScreen extends StatelessWidget {
   const MainContentScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // 100+ የዶሮ እርባታ ርዕሶችን በዝርዝር ማዘጋጀት
     final List<String> topics = List.generate(
       105,
       (index) => 'ክፍል ${index + 1}: የዶሮ እርባታ አስፈላጊ ስልጠና እና መመሪያ ቁጥር ${index + 1}',
@@ -121,7 +120,7 @@ class MainContentScreen StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.all(12),
-            color: Colors.green[50],
+            color: Colors.green.shade50,
             child: const Text(
               'ጠቃሚ ማሳሰቢያ፡ ከዚህ በታች ያሉትን 105 ትምህርቶች በማንበብ ሙያዊ ባለሙያ መሆን ይችላሉ።',
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.green),
@@ -155,14 +154,13 @@ class MainContentScreen StatelessWidget {
               },
             ),
           ),
-          // በመጨረሻ ላይ የሚገኝ የክፍያ እና አካውንት መረጃ ቁልፍ
           Container(
             padding: const EdgeInsets.all(12),
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green[800],
+                  backgroundColor: Colors.green.shade800,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
@@ -211,15 +209,15 @@ class BankAccountScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Row(
-          children: [
+          children: const [
             CircleAvatar(
               radius: 16,
               backgroundImage: NetworkImage(
                 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=150&q=80',
               ),
             ),
-            const SizedBox(width: 10),
-            const Text('የክፍያ እና አካውንት መረጃ'),
+            SizedBox(width: 10),
+            Text('የክፍያ እና አካውንት መረጃ'),
           ],
         ),
         backgroundColor: Colors.green,

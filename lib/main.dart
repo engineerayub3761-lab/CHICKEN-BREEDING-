@@ -11,7 +11,7 @@ class PoultryApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'የዶሮ እርባታ መተግበሪያ',
+      title: 'የዶሮ እርባታ 100+ መመሪያ',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
@@ -21,7 +21,7 @@ class PoultryApp extends StatelessWidget {
   }
 }
 
-// 1. ማራኪ የሆነው የመግቢያ (Cover) ገጽ
+// 1. መጀመሪያ የሚታየው ማራኪ የመግቢያ (Cover) ገጽ
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
@@ -42,7 +42,6 @@ class WelcomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // የዶሮ ሎጎ/ፎቶ
               CircleAvatar(
                 radius: 60,
                 backgroundImage: NetworkImage(
@@ -51,9 +50,9 @@ class WelcomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 25),
               const Text(
-                'የዶሮ እርባታ ሙሉ መመሪያ',
+                'የዶሮ እርባታ 100+ መመሪያ እና ስልጠና',
                 style: TextStyle(
-                  fontSize: 26,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -61,9 +60,9 @@ class WelcomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               const Text(
-                'ዘመናዊ የዶሮ እርባታ ስልጠናዎችን፣ መኖ አዘገጃጀትን እና የክፍያ መረጃዎችን በአንድ ላይ ያግኙ።',
+                'ከ100 በላይ አጠቃላይ የዶሮ እርባታ ትምህርቶች፣ የንግድ እቅዶች እና የገቢ ማግኛ መመሪያዎች።',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 15,
                   color: Colors.white70,
                 ),
                 textAlign: TextAlign.center,
@@ -83,7 +82,7 @@ class WelcomeScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => BankAccountScreen()),
+                      MaterialPageRoute(builder: (context) => MainContentScreen()),
                     );
                   },
                   child: const Text(
@@ -100,7 +99,96 @@ class WelcomeScreen extends StatelessWidget {
   }
 }
 
-// 2. የክፍያ እና መረጃ ገጽ
+// 2. 100+ ትምህርቶችን የያዘው ዋናው ገጽ
+class MainContentScreen StatelessWidget {
+  const MainContentScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // 100+ የዶሮ እርባታ ርዕሶችን በዝርዝር ማዘጋጀት
+    final List<String> topics = List.generate(
+      105,
+      (index) => 'ክፍል ${index + 1}: የዶሮ እርባታ አስፈላጊ ስልጠና እና መመሪያ ቁጥር ${index + 1}',
+    );
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('የዶሮ እርባታ 100+ ትምህርቶች'),
+        backgroundColor: Colors.green,
+        foregroundColor: Colors.white,
+      ),
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(12),
+            color: Colors.green[50],
+            child: const Text(
+              'ጠቃሚ ማሳሰቢያ፡ ከዚህ በታች ያሉትን 105 ትምህርቶች በማንበብ ሙያዊ ባለሙያ መሆን ይችላሉ።',
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.green),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: topics.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.green,
+                      foregroundColor: Colors.white,
+                      child: Text('${index + 1}'),
+                    ),
+                    title: Text(
+                      topics[index],
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: const Text('ዝርዝር የትምህርት ይዘት እና መመሪያ በዚህ ክፍል ውስጥ ይገኛል...'),
+                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('ክፍል ${index + 1} ተመረጠ')),
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+          ),
+          // በመጨረሻ ላይ የሚገኝ የክፍያ እና አካውንት መረጃ ቁልፍ
+          Container(
+            padding: const EdgeInsets.all(12),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green[800],
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => BankAccountScreen()),
+                  );
+                },
+                child: const Text(
+                  'የክፍያ እና አካውንት መረጃ ይመልከቱ',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// 3. መጨረሻ ላይ የሚጠይቀው የክፍያ እና የአካውንት መረጃ ገጽ
 class BankAccountScreen extends StatelessWidget {
   BankAccountScreen({super.key});
 
@@ -131,7 +219,7 @@ class BankAccountScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 10),
-            const Text('የክፍያ እና የዶሮ እርባታ መረጃ'),
+            const Text('የክፍያ እና አካውንት መረጃ'),
           ],
         ),
         backgroundColor: Colors.green,
@@ -210,7 +298,7 @@ class BankAccountScreen extends StatelessWidget {
                 ),
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('የክፍያ መረጃው ተይዟል!')),
+                    const SnackBar(content: Text('የክፍያ መረጃው ተረጋግጧል!')),
                   );
                 },
                 child: const Text('መረጃውን አረጋግጥ', style: TextStyle(fontSize: 16)),

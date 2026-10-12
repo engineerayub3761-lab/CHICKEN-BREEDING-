@@ -23,6 +23,10 @@ jobs:
           flutter-version: '3.19.x'
           channel: 'stable'
 
+      - name: Create Flutter Project Structure
+        run: |
+          flutter create . --org com.poultry.app --project-name poultry_app --platforms=android
+
       - name: Build APK
         run: flutter build apk --release
 

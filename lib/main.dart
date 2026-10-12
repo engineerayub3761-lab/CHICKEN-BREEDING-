@@ -42,17 +42,14 @@ class WelcomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // ማራኪ የዶሮ እርባታ ፎቶ
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20.0),
-                child: Image.network(
-                  'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=600&q=80',
-                  height: 250,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+              // የዶሮ ሎጎ/ፎቶ
+              CircleAvatar(
+                radius: 60,
+                backgroundImage: NetworkImage(
+                  'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=300&q=80',
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 25),
               const Text(
                 'የዶሮ እርባታ ሙሉ መመሪያ',
                 style: TextStyle(
@@ -125,7 +122,18 @@ class BankAccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('የክፍያ እና የዶሮ እርባታ መረጃ'),
+        title: Row(
+          children: [
+            CircleAvatar(
+              radius: 16,
+              backgroundImage: NetworkImage(
+                'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=150&q=80',
+              ),
+            ),
+            const SizedBox(width: 10),
+            const Text('የክፍያ እና የዶሮ እርባታ መረጃ'),
+          ],
+        ),
         backgroundColor: Colors.green,
         foregroundColor: Colors.white,
       ),

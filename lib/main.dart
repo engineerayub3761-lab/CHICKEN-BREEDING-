@@ -21,7 +21,7 @@ class PoultryApp extends StatelessWidget {
   }
 }
 
-// 1. መጀመሪያ የሚታየው ማራኪ የመግቢያ (Cover) ገጽ
+// 1. ይበልጥ ማራኪ እና ውብ የሆነው የመግቢያ (Cover) ገጽ
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
@@ -32,27 +32,41 @@ class WelcomeScreen extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green.shade700, Colors.green.shade900],
+            colors: [Colors.green.shade600, Colors.green.shade900],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CircleAvatar(
-                radius: 60,
-                backgroundImage: NetworkImage(
-                  'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=300&q=80',
+              // ውብ የሆነ የዶሮ ፎቶ/ሎጎ በክብ ቅርጽ
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.white, width: 4),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.3),
+                      blurRadius: 10,
+                      offset: const Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: const CircleAvatar(
+                  radius: 70,
+                  backgroundImage: NetworkImage(
+                    'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=400&q=80',
+                  ),
                 ),
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 30),
               const Text(
                 'የዶሮ እርባታ 100+ ነፃ ስልጠና',
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -60,14 +74,15 @@ class WelcomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               const Text(
-                'ሁሉንም ከ100 በላይ የዶሮ እርባታ ትምህርቶች እና መመሪያዎች ሙሉ በሙሉ በነፃ ያግኙ!',
+                'ለተጠቃሚዎች ሙሉ በሙሉ በነፃ የተዘጋጀ! ከ100 በላይ ሙያዊ የዶሮ እርባታ ትምህርቶችን፣ የክትባት እና የመኖ አዘገጃጀት መመሪያዎችን ያግኙ።',
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 16,
                   color: Colors.white70,
+                  height: 1.4,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 45),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -75,8 +90,9 @@ class WelcomeScreen extends StatelessWidget {
                     backgroundColor: Colors.white,
                     foregroundColor: Colors.green.shade900,
                     padding: const EdgeInsets.symmetric(vertical: 16),
+                    elevation: 5,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                   ),
                   onPressed: () {
@@ -99,7 +115,7 @@ class WelcomeScreen extends StatelessWidget {
   }
 }
 
-// 2. 100+ ነፃ ትምህርቶችን የያዘው ዋናው ገጽ
+// 2. 100+ ነፃ ትምህርቶችን እና ማስታወቂያ የያዘው ዋናው ገጽ
 class MainContentScreen extends StatelessWidget {
   const MainContentScreen({super.key});
 
@@ -107,13 +123,13 @@ class MainContentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<String> topics = List.generate(
       105,
-      (index) => 'ክፍል ${index + 1}: የዶሮ እርባታ ሙያዊ ስልጠና እና መመሪያ ቁጥር ${index + 1}',
+      (index) => 'ክፍል ${index + 1}: የዶሮ እርባታ ሙያዊ ስልጠና እና መመሪያ ክፍል ${index + 1}',
     );
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('የዶሮ እርባታ 100+ ነፃ ትምህርቶች'),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.green.shade800,
         foregroundColor: Colors.white,
       ),
       body: Column(
@@ -121,9 +137,17 @@ class MainContentScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             color: Colors.green.shade50,
-            child: const Text(
-              'ማሳሰቢያ፡ ይህ መተግበሪያ ሙሉ በሙሉ ነፃ ነው። ከታች ያሉትን 105 ክፍሎች በመምረጥ ማንበብ ይችላሉ።',
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.green),
+            child: Row(
+              children: const [
+                Icon(Icons.check_circle, color: Colors.green),
+                SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'ሁሉም ትምህርቶች ሙሉ በሙሉ ነፃ ናቸው። ከታች ከ 100 በላይ ክፍሎችን መርጠው ያንብቡ።',
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.green),
+                  ),
+                ),
+              ],
             ),
           ),
           Expanded(
@@ -131,10 +155,11 @@ class MainContentScreen extends StatelessWidget {
               itemCount: topics.length,
               itemBuilder: (context, index) {
                 return Card(
+                  elevation: 2,
                   margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   child: ListTile(
                     leading: CircleAvatar(
-                      backgroundColor: Colors.green,
+                      backgroundColor: Colors.green.shade700,
                       foregroundColor: Colors.white,
                       child: Text('${index + 1}'),
                     ),
@@ -143,7 +168,7 @@ class MainContentScreen extends StatelessWidget {
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: const Text('ዝርዝር የትምህርት ይዘት በዚህ ክፍል ውስጥ በነፃ ይገኛል...'),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                    trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
                     onTap: () {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('ክፍል ${index + 1} ተከፍቷል')),
@@ -154,15 +179,20 @@ class MainContentScreen extends StatelessWidget {
               },
             ),
           ),
-          // እዚህ ታች ላይ የጉግል ማስታወቂያ (Google AdMob Banner) የሚቀመጥበት ቦታ ይኖራል
+          // የጉግል ማስታወቂያ (Google AdMob Banner Space)
           Container(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(12),
             color: Colors.grey.shade200,
-            child: const Center(
-              child: Text(
-                'Google AdMob Advertisement Space',
-                style: TextStyle(color: Colors.grey, fontSize: 12),
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Icon(Icons.ads_click, size: 16, color: Colors.grey),
+                SizedBox(width: 8),
+                Text(
+                  'Google AdMob Advertisement Space',
+                  style: TextStyle(color: Colors.grey, fontSize: 12, fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
           ),
         ],

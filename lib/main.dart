@@ -11,7 +11,7 @@ class PoultryApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'የዶሮ እርባታ 100+ መመሪያ',
+      title: 'የዶሮ እርባታ 100+ ነፃ መመሪያ',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
@@ -50,7 +50,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 25),
               const Text(
-                'የዶሮ እርባታ 100+ መመሪያ እና ስልጠና',
+                'የዶሮ እርባታ 100+ ነፃ ስልጠና',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -60,7 +60,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               const Text(
-                'ከ100 በላይ አጠቃላይ የዶሮ እርባታ ትምህርቶች፣ የንግድ እቅዶች እና የገቢ ማግኛ መመሪያዎች።',
+                'ሁሉንም ከ100 በላይ የዶሮ እርባታ ትምህርቶች እና መመሪያዎች ሙሉ በሙሉ በነፃ ያግኙ!',
                 style: TextStyle(
                   fontSize: 15,
                   color: Colors.white70,
@@ -86,7 +86,7 @@ class WelcomeScreen extends StatelessWidget {
                     );
                   },
                   child: const Text(
-                    'መተግበሪያውን ጀምር',
+                    'መተግበሪያውን በነፃ ጀምር',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -99,7 +99,7 @@ class WelcomeScreen extends StatelessWidget {
   }
 }
 
-// 2. 100+ ትምህርቶችን የያዘው ዋናው ገጽ
+// 2. 100+ ነፃ ትምህርቶችን የያዘው ዋናው ገጽ
 class MainContentScreen extends StatelessWidget {
   const MainContentScreen({super.key});
 
@@ -107,12 +107,12 @@ class MainContentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<String> topics = List.generate(
       105,
-      (index) => 'ክፍል ${index + 1}: የዶሮ እርባታ አስፈላጊ ስልጠና እና መመሪያ ቁጥር ${index + 1}',
+      (index) => 'ክፍል ${index + 1}: የዶሮ እርባታ ሙያዊ ስልጠና እና መመሪያ ቁጥር ${index + 1}',
     );
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('የዶሮ እርባታ 100+ ትምህርቶች'),
+        title: const Text('የዶሮ እርባታ 100+ ነፃ ትምህርቶች'),
         backgroundColor: Colors.green,
         foregroundColor: Colors.white,
       ),
@@ -122,7 +122,7 @@ class MainContentScreen extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             color: Colors.green.shade50,
             child: const Text(
-              'ጠቃሚ ማሳሰቢያ፡ ከዚህ በታች ያሉትን 105 ትምህርቶች በማንበብ ሙያዊ ባለሙያ መሆን ይችላሉ።',
+              'ማሳሰቢያ፡ ይህ መተግበሪያ ሙሉ በሙሉ ነፃ ነው። ከታች ያሉትን 105 ክፍሎች በመምረጥ ማንበብ ይችላሉ።',
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.green),
             ),
           ),
@@ -142,11 +142,11 @@ class MainContentScreen extends StatelessWidget {
                       topics[index],
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    subtitle: const Text('ዝርዝር የትምህርት ይዘት እና መመሪያ በዚህ ክፍል ውስጥ ይገኛል...'),
+                    subtitle: const Text('ዝርዝር የትምህርት ይዘት በዚህ ክፍል ውስጥ በነፃ ይገኛል...'),
                     trailing: const Icon(Icons.arrow_forward_ios, size: 16),
                     onTap: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('ክፍል ${index + 1} ተመረጠ')),
+                        SnackBar(content: Text('ክፍል ${index + 1} ተከፍቷል')),
                       );
                     },
                   ),
@@ -154,156 +154,18 @@ class MainContentScreen extends StatelessWidget {
               },
             ),
           ),
+          // እዚህ ታች ላይ የጉግል ማስታወቂያ (Google AdMob Banner) የሚቀመጥበት ቦታ ይኖራል
           Container(
-            padding: const EdgeInsets.all(12),
-            child: SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green.shade800,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => BankAccountScreen()),
-                  );
-                },
-                child: const Text(
-                  'የክፍያ እና አካውንት መረጃ ይመልከቱ',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+            padding: const EdgeInsets.all(10),
+            color: Colors.grey.shade200,
+            child: const Center(
+              child: Text(
+                'Google AdMob Advertisement Space',
+                style: TextStyle(color: Colors.grey, fontSize: 12),
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-// 3. መጨረሻ ላይ የሚጠይቀው የክፍያ እና የአካውንት መረጃ ገጽ
-class BankAccountScreen extends StatelessWidget {
-  BankAccountScreen({super.key});
-
-  final TextEditingController bankNameController =
-      TextEditingController(text: 'Commercial Bank of Ethiopia (CBE)');
-  final TextEditingController accountNumberController =
-      TextEditingController(text: '1000663203982');
-  final TextEditingController accountHolderController =
-      TextEditingController(text: 'AYUB AWOL SALIYA');
-
-  final TextEditingController telebirrNameController =
-      TextEditingController(text: 'Telebirr');
-  final TextEditingController telebirrPhoneController =
-      TextEditingController(text: '+251926959771');
-  final TextEditingController telebirrHolderController =
-      TextEditingController(text: 'Usen awel');
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: const [
-            CircleAvatar(
-              radius: 16,
-              backgroundImage: NetworkImage(
-                'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=150&q=80',
-              ),
-            ),
-            SizedBox(width: 10),
-            Text('የክፍያ እና አካውንት መረጃ'),
-          ],
-        ),
-        backgroundColor: Colors.green,
-        foregroundColor: Colors.white,
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'የባንክ አካውንት መረጃ',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green),
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: bankNameController,
-              decoration: const InputDecoration(
-                labelText: 'የባንክ ስም',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 12),
-            TextField(
-              controller: accountNumberController,
-              decoration: const InputDecoration(
-                labelText: 'የሂሳብ ቁጥር (Account Number)',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 12),
-            TextField(
-              controller: accountHolderController,
-              decoration: const InputDecoration(
-                labelText: 'የባንክ ባለቤቱ ስም',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 25),
-            const Text(
-              'የቴሌብር (Telebirr) መረጃ',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green),
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: telebirrNameController,
-              decoration: const InputDecoration(
-                labelText: 'አገልግሎት',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 12),
-            TextField(
-              controller: telebirrPhoneController,
-              decoration: const InputDecoration(
-                labelText: 'ስልክ ቁጥር',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 12),
-            TextField(
-              controller: telebirrHolderController,
-              decoration: const InputDecoration(
-                labelText: 'ስም',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                ),
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('የክፍያ መረጃው ተረጋግጧል!')),
-                  );
-                },
-                child: const Text('መረጃውን አረጋግጥ', style: TextStyle(fontSize: 16)),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
